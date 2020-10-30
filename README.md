@@ -1,12 +1,9 @@
 # Gilded Rose Refactoring Kata
-This Kata was originally created by Terry Hughes (http://twitter.com/TerryHughes). It is already on GitHub [here](https://github.com/NotMyself/GildedRose). See also [Bobby Johnson's description of the kata](http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/).
 
 ## How to use this Kata
 
-The simplest way is to just clone the code and start hacking away improving the design. You'll want to look at the ["Gilded Rose Requirements"](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/GildedRoseRequirements.txt) which explains what the code is for. I strongly advise you that you'll also need some tests if you want to make sure you don't break the code while you refactor.
-
-You could write some unit tests yourself, using the requirements to identify suitable test cases. I've provided a failing unit test in a popular test framework as a starting point for most languages.
-
+The simplest way is to just clone the code and start hacking away improving the design. 
+You could write some unit tests yourself, using the requirements to identify suitable test cases. 
 ## Gilded Rose Requirements Specification
 
 Hi and welcome to team Gilded Rose. As you know, we are a small inn with a prime location in a
@@ -27,11 +24,11 @@ Pretty simple, right? Well this is where it gets interesting:
 * "Aged Brie" actually increases in Quality the older it gets
 * The Quality of an item is never more than 50
 * "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
-* "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches; Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert
+* "Backstage passes", increases in Quality as its SellIn value approaches; Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert
 
-We have recently signed a supplier of conjured items. This requires an update to our system:
+We have recently signed a supplier of conjured items. This requires an **update to our system**:
 
- * "Conjured" items degrade in Quality twice as fast as normal items
+ * "Conjured" items like "Conjured Aged Brie" or "Conjured Potion" change in Quality twice as fast as normal items
 
 Feel free to make any changes to the UpdateQuality method and add any new code as long as everything
 still works correctly. However, do not alter the Item class or Items property as those belong to the

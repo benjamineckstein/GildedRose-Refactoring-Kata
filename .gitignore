@@ -17,5 +17,6 @@ bin/
 # Gradle
 .gradle
 /build/
+/out/
 
 
