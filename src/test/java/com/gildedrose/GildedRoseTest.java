@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.*;
 class GildedRoseTest {
 
     @Test
-    void foo() {
+    void itemShouldRemain() {
         Item[] items = new Item[] { new Item("foo", 0, 0) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -93,7 +93,46 @@ class GildedRoseTest {
         assertThat(app.items[0].quality).isEqualTo(40);
     }
 
+    @Test
+    void backstagePassesQualityShouldIncreaseBy5() {
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 10, 0) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertThat(app.items[0].sellIn).isEqualTo(9);
+        assertThat(app.items[0].quality).isEqualTo(2);
+    }
 
+    @Test
+    void backstagePassesQualityShouldIncreaseBy3() {
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 5, 0) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertThat(app.items[0].sellIn).isEqualTo(4);
+        assertThat(app.items[0].quality).isEqualTo(3);
+    }
+
+    @Test
+    void backstagePassesQualityShouldDropTo0() {
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertThat(app.items[0].sellIn).isEqualTo(-1);
+        assertThat(app.items[0].quality).isEqualTo(0);
+    }
+
+    @Test
+    void foo() {
+        Item[] items = new Item[] {
+            new Item("foo", 0, 0),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 5, 0)
+        };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertThat(app.items[0].sellIn).isEqualTo(-1);
+        assertThat(app.items[0].quality).isEqualTo(0);
+        assertThat(app.items[1].sellIn).isEqualTo(4);
+        assertThat(app.items[1].quality).isEqualTo(3);
+    }
 
 
 
