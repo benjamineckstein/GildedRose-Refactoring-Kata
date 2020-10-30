@@ -1,8 +1,13 @@
 package com.gildedrose;
 
 class GildedRose {
+
     Item[] items;
 
+    /**
+     * Do not change the arguments of the constructor in any way
+     * @param items Array of Items
+     */
     public GildedRose(Item[] items) {
         this.items = items;
     }
