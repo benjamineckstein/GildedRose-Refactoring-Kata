@@ -14,11 +14,11 @@ class GildedRose {
     }
 
     /**
-     * Available challenges:
-     * 1. Do not use your mouse at all
-     * 2. No breaking changes. Only baby steps are allowed and tests must pass at any time.
-     * 3. Explain what your goal is and why this is good before doing it.
-     * 4. You are only allowed to speak, someone else has to do it.
+     * Want to make this refactoring more interesting? Add one or more challenges:
+     * 1. Speed Challenge: Do not use your mouse at all
+     * 2. Surgeon Challenge: No breaking changes. Only baby steps are allowed and tests must pass after each step.
+     * 3. Focus Challenge: Explain what your goal is and why this is good before doing it.
+     * 4. Precision Challenge: You are only allowed to speak, someone else has to do it.
      */
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
