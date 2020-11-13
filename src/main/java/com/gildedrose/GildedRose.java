@@ -19,6 +19,7 @@ class GildedRose {
      * 2. Surgeon Challenge: No breaking changes. Only baby steps are allowed and tests must pass after each step.
      * 3. Focus Challenge: Explain what your goal is and why this is good before doing it.
      * 4. Precision Challenge: You are only allowed to speak, someone else has to do it.
+     * 5. Bonus Challenge: Refactor in a way that you do not use a single if statement
      */
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
