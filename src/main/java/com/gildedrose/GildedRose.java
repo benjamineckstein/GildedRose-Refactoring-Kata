@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import java.util.Arrays;
+
 class GildedRose {
 
     Item[] items;
@@ -22,47 +24,30 @@ class GildedRose {
      * 5. Bonus Challenge: Refactor in a way that you do not use a single if statement
      */
     public void updateQuality() {
-        for (Item item : items) {
-            updateItem(item);
-        }
+        Arrays.stream(items).forEach(this::updateItem);
     }
 
     private void updateItem(Item item) {
-        item.quality =
-                switch (item.name) {
-                    case "Aged Brie" -> item.quality + 1;
-                    case "Backstage passes to a TAFKAL80ETC concert" -> item.quality + updateItemQualityBackstage(item);
-                    case "Sulfuras, Hand of Ragnaros" -> item.quality;
-                    default -> item.quality - 1;
-                };
 
-        if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            item.sellIn = item.sellIn - 1;
-        }
+        if (item.name.equals("Sulfuras, Hand of Ragnaros"))
+            return;
 
-        if (item.sellIn < 0) {
-            item.quality = switch (item.name) {
-                case "Aged Brie" -> item.quality +1;
-                case "Backstage passes to a TAFKAL80ETC concert" -> 0;
-                case "Sulfuras, Hand of Ragnaros" -> item.quality;
-                default -> item.quality - 1;
-            };
-        }
+        item.sellIn = item.sellIn - 1;
+        boolean isSellInNeg = item.sellIn < 0;
+        item.quality += switch (item.name) {
+            case "Aged Brie" -> (isSellInNeg ? 2 : 1);
+            case "Backstage passes to a TAFKAL80ETC concert" -> (isSellInNeg ? -item.quality : updateItemQualityBackstage(item));
+            default -> (isSellInNeg ? -2 : -1);
+        };
 
-        if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            item.quality = Math.max(item.quality, 0);
-            item.quality = Math.min(50, item.quality);
-        }
+        item.quality = Math.min(50, Math.max(item.quality, 0));
     }
 
     private int updateItemQualityBackstage(Item item) {
-        int result = 1;
-        if (item.sellIn < 6) {
-            result = 3;
-        } else if (item.sellIn < 11) {
-            result = 2;
-        }
-        return result;
+        return switch (item.sellIn){
+            case 9,8,7,6,5 -> 2;
+            case 4,3,2,1,0 -> 3;
+            default -> 1;
+        };
     }
-
 }
